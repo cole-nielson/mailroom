@@ -1,0 +1,61 @@
+- id: schedule_question_simple
+  from: customer1@example.com
+  subject: "Tuesday class time?"
+  body: "Hi, what time is your Tuesday class?"
+  expected_outcome: drafted
+  expected_category_substring: schedule
+
+- id: pricing_drop_in
+  from: customer2@example.com
+  subject: "How much per class?"
+  body: "How much is it to drop in for one class?"
+  expected_outcome: drafted
+  expected_category_substring: pricing
+
+- id: beginner_inquiry
+  from: customer3@example.com
+  subject: "I've never danced"
+  body: "Hi! I've literally never taken a dance class. Is this beginner friendly?"
+  expected_outcome: drafted
+
+- id: refund_request
+  from: customer4@example.com
+  subject: "Refund please"
+  body: "I bought the annual pass last week and need to cancel for medical reasons. Can I get a refund?"
+  expected_outcome: flagged
+
+- id: complaint
+  from: customer5@example.com
+  subject: "Not happy"
+  body: "The instructor was incredibly rude to me on Saturday. I'm very upset and want a response."
+  expected_outcome: flagged
+
+- id: vendor_pitch
+  from: salesrep@vendor.com
+  subject: "Boost your studio's revenue!"
+  body: "Hi there, I'd love to show you our new POS system that's helping studios like yours increase revenue by 30%."
+  expected_outcome: skipped
+
+- id: short_thanks
+  from: customer6@example.com
+  subject: "thanks"
+  body: "ok thanks!"
+  expected_outcome: skipped  # nothing actionable
+
+- id: ambiguous_multi_question
+  from: customer7@example.com
+  subject: "couple of questions"
+  body: "Hi, I had a few questions: do you offer kids classes, what's parking like, and is there a senior discount? Also what's your refund policy?"
+  expected_outcome: drafted  # answerable from KB but model may flag ambiguous; either way drafted is OK
+
+- id: registration
+  from: customer8@example.com
+  subject: "Sign me up"
+  body: "I want to start coming. How do I sign up for the monthly unlimited?"
+  expected_outcome: drafted
+
+- id: family_question
+  from: customer9@example.com
+  subject: "Can my daughter come?"
+  body: "Can I bring my 10-year-old to class with me?"
+  expected_outcome: drafted
