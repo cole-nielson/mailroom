@@ -3,10 +3,12 @@ import base64
 import os
 import re
 from datetime import datetime, timedelta, timezone
+from email.message import EmailMessage
 from email.utils import getaddresses, parsedate_to_datetime
 from typing import Iterable
 
 from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
 from shine_email_assistant.gmail_client.auth import credentials_from_env
 from shine_email_assistant.gmail_client.thread import ParsedMessage, ParsedThread
@@ -77,6 +79,41 @@ class GmailClient:
             userId="me", id=message_id, format="full"
         ).execute()
         return _extract_plain_text(raw.get("payload", {}))
+
+    def create_draft(
+        self,
+        thread_id: str,
+        in_reply_to_message_id_header: str,
+        to: str,
+        subject: str,
+        html_body: str,
+        plaintext_body: str,
+        references: str | None = None,
+    ) -> str:
+        """Create a draft attached to an existing thread, replying to a specific message.
+
+        Returns the new draft's ID.
+        """
+        msg = EmailMessage()
+        msg["To"] = to
+        msg["Subject"] = subject if subject.lower().startswith("re:") else f"Re: {subject}"
+        msg["In-Reply-To"] = in_reply_to_message_id_header
+        msg["References"] = references or in_reply_to_message_id_header
+        msg.set_content(plaintext_body)
+        msg.add_alternative(html_body, subtype="html")
+
+        raw = base64.urlsafe_b64encode(msg.as_bytes()).decode("ascii")
+        body = {"message": {"raw": raw, "threadId": thread_id}}
+
+        created = self._service.users().drafts().create(userId="me", body=body).execute()
+        return created["id"]
+
+    def delete_draft(self, draft_id: str) -> None:
+        """Used by integration tests to clean up after themselves."""
+        try:
+            self._service.users().drafts().delete(userId="me", id=draft_id).execute()
+        except HttpError as e:
+            log.warning("draft_delete_failed", draft_id=draft_id, error=str(e))
 
     # ---- labels ----
 
