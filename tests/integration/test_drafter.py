@@ -18,6 +18,9 @@ _BANNED_PHRASES = [
     "absolutely!",
     "feel free to",
     "as an ai",
+    "as an artificial intelligence",
+    "i'm just a language model",
+    "i am a language model",
 ]
 
 
@@ -62,5 +65,7 @@ def test_generate_returns_nonempty_body_without_banned_phrases(anthropic_availab
     body_lower = draft.body_markdown.lower()
     for phrase in _BANNED_PHRASES:
         assert phrase not in body_lower, f"draft contains banned phrase: {phrase!r}"
+    # em-dashes are banned per the prompt (rule 3)
+    assert "—" not in draft.body_markdown
     # body should reference the actual KB fact
     assert "saturday" in body_lower or "9" in body_lower
