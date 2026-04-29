@@ -29,6 +29,8 @@ class ParsedThread:
 
     @property
     def latest_message(self) -> ParsedMessage:
+        if not self.messages:
+            raise ValueError(f"ParsedThread {self.thread_id!r} has no messages")
         return self.messages[-1]
 
     @property

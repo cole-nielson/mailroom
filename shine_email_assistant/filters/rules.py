@@ -9,7 +9,7 @@ _AUTOMATION_PATTERNS = (
     re.compile(r"^do-?not-?reply@", re.IGNORECASE),
     re.compile(r"^mailer-?daemon@", re.IGNORECASE),
     re.compile(r"^postmaster@", re.IGNORECASE),
-    re.compile(r"^bounce[s]?@", re.IGNORECASE),
+    re.compile(r"^bounces?[@+-]", re.IGNORECASE),
 )
 
 
