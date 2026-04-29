@@ -1,7 +1,8 @@
 """Gmail API wrapper. Only the operations the pipeline actually needs."""
 import base64
+import os
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.utils import getaddresses, parsedate_to_datetime
 from typing import Iterable
 
@@ -24,7 +25,6 @@ class GmailClient:
     """Single source of truth for Gmail API calls."""
 
     def __init__(self, user_email: str | None = None):
-        import os
         self._user_email = (user_email or os.environ["GMAIL_USER_EMAIL"]).lower()
         self._service = build("gmail", "v1", credentials=credentials_from_env(), cache_discovery=False)
         self._label_cache: dict[str, str] = {}
@@ -64,7 +64,6 @@ class GmailClient:
 
     def list_recent_sent_messages(self, hours: int = 30) -> list[dict]:
         """Used by feedback sweep. Returns minimal message dicts (id, threadId, internalDate)."""
-        from datetime import timedelta
         after = int((datetime.now(timezone.utc) - timedelta(hours=hours)).timestamp())
         q = f"in:sent after:{after}"
         resp = self._service.users().messages().list(
