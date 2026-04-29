@@ -34,7 +34,7 @@ def send_alert(subject: str, body: str) -> None:
     msg.set_content(body)
 
     try:
-        with smtplib.SMTP(host, int(port_str)) as smtp:
+        with smtplib.SMTP(host, int(port_str), timeout=10) as smtp:
             smtp.starttls()
             smtp.login(user, password)
             smtp.send_message(msg)
