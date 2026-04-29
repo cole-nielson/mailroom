@@ -78,6 +78,18 @@ class Pipeline:
 
     def _process_thread(self, thread_id: str, kb: KnowledgeBundle) -> None:
         try:
+            self._process_thread_inner(thread_id, kb)
+        except Exception as e:  # noqa: BLE001
+            log.error(
+                "process_thread_unexpected",
+                thread_id=thread_id,
+                error=str(e),
+                traceback=traceback.format_exc(),
+            )
+            self._safe_label(thread_id, ERROR_LABEL)
+
+    def _process_thread_inner(self, thread_id: str, kb: KnowledgeBundle) -> None:
+        try:
             thread = self.gmail.get_thread(thread_id)
         except Exception as e:  # noqa: BLE001
             self._record_error(thread_id, "fetch", e)
@@ -158,7 +170,18 @@ class Pipeline:
             return
 
         # 6) Persist + label processed
-        self._record_draft(thread_id, draft_id, msg_id_header, classification, draft, rendered, kb.version)
+        # Note: the draft already exists in Gmail. We MUST apply PROCESSED_LABEL
+        # even if DB persistence fails, otherwise we'd double-draft on the next tick.
+        try:
+            self._record_draft(thread_id, draft_id, msg_id_header, classification, draft, rendered, kb.version)
+        except Exception as e:  # noqa: BLE001
+            log.error(
+                "draft_record_failed",
+                thread_id=thread_id,
+                draft_id=draft_id,
+                error=str(e),
+                traceback=traceback.format_exc(),
+            )
         self._safe_label(thread_id, PROCESSED_LABEL)
         log.info("draft_created", thread_id=thread_id, draft_id=draft_id, category=classification.category)
 
