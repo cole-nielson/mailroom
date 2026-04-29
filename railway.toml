@@ -1,0 +1,9 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "uv run python main.py"
+restartPolicyType = "ALWAYS"
+
+# Daily sweep runs as a separate scheduled service (set up via Railway UI).
+# See README for the exact command.
