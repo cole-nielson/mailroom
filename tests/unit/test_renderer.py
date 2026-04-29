@@ -42,3 +42,15 @@ def test_render_wraps_markdown_body_with_signature(tmp_path: Path):
     # plaintext fallback retains the prose without HTML
     assert "Thanks for reaching out!" in result.plaintext
     assert "<" not in result.plaintext
+
+
+def test_render_strips_dangerous_html_from_body(tmp_path: Path):
+    _seed_tenant(tmp_path)
+
+    body_md = "Welcome!\n\n<script>alert('xss')</script>\n\nHere are details."
+    result = render(body_md, tenant_name="shine", tenants_root=tmp_path)
+
+    assert "<script>" not in result.html
+    assert "alert" not in result.html
+    assert "Welcome!" in result.html
+    assert "Here are details" in result.html
