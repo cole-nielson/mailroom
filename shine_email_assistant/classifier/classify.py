@@ -1,6 +1,7 @@
 """Call Claude to classify a thread. Returns a Classification."""
 import json
 import os
+from functools import lru_cache
 
 from anthropic import Anthropic
 
@@ -16,8 +17,13 @@ log = get_logger(__name__)
 _DEFAULT_MODEL = "claude-sonnet-4-6"
 
 
+@lru_cache
+def _client() -> Anthropic:
+    return Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+
+
 def classify(thread: ParsedThread, kb: KnowledgeBundle, *, model: str | None = None) -> Classification:
-    client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    client = _client()
     model = model or os.getenv("MODEL_CLASSIFIER", _DEFAULT_MODEL)
 
     user_prompt = build_user_prompt(thread, kb)
