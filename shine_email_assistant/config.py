@@ -13,6 +13,7 @@ class TenantConfig:
     address: str
     phone: str
     reply_signoff: str
+    email: str = ""  # optional: shown in signature, used as From address hint
 
 
 def load_tenant_config(tenant_dir: Path) -> TenantConfig:
@@ -28,6 +29,7 @@ def load_tenant_config(tenant_dir: Path) -> TenantConfig:
             address=raw["address"],
             phone=raw["phone"],
             reply_signoff=raw["reply_signoff"],
+            email=raw.get("email", ""),
         )
     except KeyError as e:
         raise KeyError(f"Missing required field {e} in {config_path}") from e

@@ -1,19 +1,28 @@
 # Frequently Asked Questions
 
-**Do I need experience to join?**
-No. Most of our classes are all-levels, and Saturday 9am is specifically beginner-friendly.
+**Do I need any dance background to start?**
+No. SHiNE LIGHT in particular is built for total beginners and folks who want a less complex pace, but plenty of people start with full SHiNE classes too. The choreography is approachable, and we'd rather you have fun than nail every step.
 
-**Is this for any age?**
-Most classes are 16+. The Saturday 10am family class welcomes kids 8 and up with an adult.
+**Do I need equipment?**
+For SHiNE and SHiNE LIGHT, just yourself and water. UPLIFT uses weights, resistance bands, and a mat — most members start with what they have at home and add as they go.
 
-**Do I need to register in advance?**
-No. Just drop in. If a class fills up (rare), we'll let you know at the door.
+**Is there a free trial for the online membership?**
+Yes — 7 full days, full access, no charge. Cancel anytime during the trial without being billed.
 
-**Is the first class really free?**
-Yes — first class is on us for new students. Just mention it when you arrive.
+**How do I find a local SHiNE class?**
+Use the Location Finder at shinefitness.com/location-finder. It lists certified SHiNE instructors who teach in-person classes in their communities. Reach out to them directly for their schedule and pricing.
 
-**Do you offer private lessons?**
-Not currently. We may pilot some in the future; ask and we'll keep your name on a list.
+**How do I become a certified SHiNE instructor?**
+Visit shinefitness.com to learn about SHiNE Certification and UPLIFT Certification. Both can be completed online and include all the training materials, choreography library access, and HQ support you need to start teaching.
 
-**Is parking available?**
-Yes, free street parking and a small lot behind the studio.
+**Where is your HQ?**
+370 S. Eagle Rd, Eagle, ID 83616. We host in-person Dance at HQ classes there — schedule on the website.
+
+**Can I take classes if I'm pregnant / have an injury / have other health considerations?**
+We always recommend checking in with your healthcare provider first, then choosing the format that fits — SHiNE LIGHT and UPLIFT both have lower-impact options. If you have specific questions about modifying the workout, reply and we'll do our best to help.
+
+**Do you offer in-person classes outside Idaho?**
+Through our certified instructors, yes. They teach in studios, parks, and gyms all over — find one via the Location Finder.
+
+**How can I contact a real human?**
+This inbox is monitored by our team. For sensitive issues (refunds, complaints, anything urgent), a person will get back to you personally — typically within two business days.

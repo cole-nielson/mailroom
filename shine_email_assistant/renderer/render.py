@@ -52,6 +52,7 @@ def render(body_markdown: str, tenant_name: str, tenants_root: Path) -> Rendered
         website=cfg.website,
         address=cfg.address,
         phone=cfg.phone,
+        email=cfg.email,
     )
 
     page_template = env.from_string((tenant_dir / "email_template.html").read_text())
