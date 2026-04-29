@@ -65,11 +65,14 @@ class GmailClient:
         )
 
     def list_recent_sent_messages(self, hours: int = 30) -> list[dict]:
-        """Used by feedback sweep. Returns minimal message dicts (id, threadId, internalDate)."""
+        """Used by feedback sweep. Returns dicts with id, threadId, internalDate (ms since epoch as str)."""
         after = int((datetime.now(timezone.utc) - timedelta(hours=hours)).timestamp())
         q = f"in:sent after:{after}"
         resp = self._service.users().messages().list(
-            userId="me", q=q, maxResults=200
+            userId="me",
+            q=q,
+            maxResults=200,
+            fields="messages(id,threadId,internalDate),nextPageToken",
         ).execute()
         return resp.get("messages", [])
 

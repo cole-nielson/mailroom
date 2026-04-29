@@ -33,13 +33,11 @@ def audit_recent_drafts(*, hours: int = 30) -> dict:
 
         for row in rows:
             sent_msgs = sent_by_thread.get(row.thread_id, [])
-            # Pick the first sent message in this thread that came AFTER the draft was created.
-            # (internalDate isn't in list output; just take any sent message after draft creation.
-            #  We'll fetch the body to compare.)
-            chosen = None
-            for sm in sent_msgs:
-                chosen = sm
-                break
+            # Filter to sent messages after the draft was created, then pick the earliest.
+            # internalDate is a string of ms since epoch. row.created_at is naive UTC.
+            draft_ms = int(row.created_at.replace(tzinfo=timezone.utc).timestamp() * 1000)
+            after_draft = [sm for sm in sent_msgs if int(sm.get("internalDate", 0)) >= draft_ms]
+            chosen = min(after_draft, key=lambda sm: int(sm["internalDate"]), default=None)
 
             if not chosen:
                 row.outcome = "not_sent"
@@ -52,6 +50,9 @@ def audit_recent_drafts(*, hours: int = 30) -> dict:
                 sent_text = gmail.get_message_body_text(chosen["id"])
             except Exception as e:  # noqa: BLE001
                 log.warning("audit_fetch_failed", message_id=chosen["id"], error=str(e))
+                row.outcome = "audit_fetch_failed"
+                row.audited_at = datetime.now(timezone.utc).replace(tzinfo=None)
+                summary["audited"] += 1
                 continue
 
             ratio = edit_distance_ratio(row.body_markdown.strip(), sent_text.strip())
