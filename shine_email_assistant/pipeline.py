@@ -158,7 +158,7 @@ class Pipeline:
             draft_id = self.gmail.create_draft(
                 thread_id=thread_id,
                 in_reply_to_message_id_header=msg_id_header,
-                to=latest.from_email,
+                to=latest.from_address or latest.from_email,
                 subject=latest.subject or "(no subject)",
                 html_body=rendered.html,
                 plaintext_body=rendered.plaintext,

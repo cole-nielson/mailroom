@@ -10,6 +10,10 @@ from sqlalchemy.orm import Session, sessionmaker
 @lru_cache
 def get_engine() -> Engine:
     url = os.environ["DATABASE_URL"]
+    # Railway's Postgres add-on injects postgresql://, but SQLAlchemy 2 + psycopg3
+    # needs the explicit driver in the URL. Normalize transparently.
+    if url.startswith("postgresql://"):
+        url = url.replace("postgresql://", "postgresql+psycopg://", 1)
     return create_engine(url, pool_pre_ping=True)
 
 

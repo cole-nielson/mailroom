@@ -66,7 +66,13 @@ def classify(thread: ParsedThread, kb: KnowledgeBundle, *, model: str | None = N
             ],
         )
         text = "".join(block.text for block in retry_resp.content if block.type == "text").strip()
-        data = json.loads(text)
+        try:
+            data = json.loads(text)
+        except json.JSONDecodeError as exc:
+            log.warning("classifier_retry_json_parse_failed", thread_id=thread.thread_id, raw=text[:500])
+            raise ValueError(
+                f"Classifier returned non-JSON after retry. First 200 chars: {text[:200]!r}"
+            ) from exc
 
     return Classification(
         should_draft=bool(data["should_draft"]),

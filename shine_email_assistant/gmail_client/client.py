@@ -151,7 +151,9 @@ class GmailClient:
         if our own previous draft sticks around, we won't redraft. That's fine — Dad
         will deal with it on his own schedule.
         """
-        drafts = self._service.users().drafts().list(userId="me").execute().get("drafts", [])
+        # maxResults=500 is the API max. Above this, we'd silently fail to detect
+        # an existing human draft and redraft on the thread.
+        drafts = self._service.users().drafts().list(userId="me", maxResults=500).execute().get("drafts", [])
         for d in drafts:
             if d.get("message", {}).get("threadId") == thread_id:
                 return True
