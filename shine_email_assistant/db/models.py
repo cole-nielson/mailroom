@@ -1,5 +1,5 @@
 """SQLAlchemy models. Single source of truth for DB schema."""
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from sqlalchemy import JSON, DateTime, Integer, String, Text
@@ -36,7 +36,7 @@ class DraftRecord(Base):
     tokens_input: Mapped[int] = mapped_column(Integer, default=0)
     tokens_output: Mapped[int] = mapped_column(Integer, default=0)
 
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)
 
     # Filled by feedback sweep
     outcome: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
@@ -56,7 +56,7 @@ class SkipRecord(Base):
     skip_source: Mapped[str] = mapped_column(String(32))  # "rule_filter" | "classifier" | "sensitivity_high"
     reason: Mapped[str] = mapped_column(Text)
     metadata_json: Mapped[dict] = mapped_column(JSON, default=dict)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)
 
 
 class ErrorRecord(Base):
@@ -69,4 +69,4 @@ class ErrorRecord(Base):
     stage: Mapped[str] = mapped_column(String(64))  # "list" | "fetch" | "classify" | "draft" | "render" | "create_draft"
     error_type: Mapped[str] = mapped_column(String(128))
     error_message: Mapped[str] = mapped_column(Text)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)
