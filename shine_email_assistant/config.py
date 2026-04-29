@@ -20,11 +20,14 @@ def load_tenant_config(tenant_dir: Path) -> TenantConfig:
     if not config_path.exists():
         raise FileNotFoundError(f"No config.yaml in {tenant_dir}")
     raw = yaml.safe_load(config_path.read_text())
-    return TenantConfig(
-        display_name=raw["display_name"],
-        brand_color=raw["brand_color"],
-        website=raw["website"],
-        address=raw["address"],
-        phone=raw["phone"],
-        reply_signoff=raw["reply_signoff"],
-    )
+    try:
+        return TenantConfig(
+            display_name=raw["display_name"],
+            brand_color=raw["brand_color"],
+            website=raw["website"],
+            address=raw["address"],
+            phone=raw["phone"],
+            reply_signoff=raw["reply_signoff"],
+        )
+    except KeyError as e:
+        raise KeyError(f"Missing required field {e} in {config_path}") from e
