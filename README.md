@@ -172,7 +172,7 @@ Cost scales close-to-linearly with email volume. Prompt caching keeps the per-em
 - 18 implementation tasks complete, deployed to Railway, polling 24/7
 - 22 unit tests + 14 integration tests + 10-fixture golden harness
 - Verified end-to-end: 10/10 expected outcomes on the golden suite, including correct flagging of complaint and refund emails as `flag-for-human` (no draft generated)
-- First production tenant launching after voice-quality review with the real owner
+- Ready for self-hosted deployment — clone, plug in your own Anthropic + Gmail credentials, drop in a tenant folder, and go
 
 ---
 

@@ -560,6 +560,53 @@ wheels = [
 ]
 
 [[package]]
+name = "mailroom"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "anthropic" },
+    { name = "bleach" },
+    { name = "google-api-python-client" },
+    { name = "google-auth" },
+    { name = "google-auth-oauthlib" },
+    { name = "jinja2" },
+    { name = "markdown" },
+    { name = "psycopg", extra = ["binary"] },
+    { name = "python-dotenv" },
+    { name = "pyyaml" },
+    { name = "sqlalchemy" },
+    { name = "structlog" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-mock" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "anthropic", specifier = ">=0.40.0" },
+    { name = "bleach", specifier = ">=6.1.0" },
+    { name = "google-api-python-client", specifier = ">=2.140.0" },
+    { name = "google-auth", specifier = ">=2.34.0" },
+    { name = "google-auth-oauthlib", specifier = ">=1.2.0" },
+    { name = "jinja2", specifier = ">=3.1.4" },
+    { name = "markdown", specifier = ">=3.7" },
+    { name = "psycopg", extras = ["binary"], specifier = ">=3.2.0" },
+    { name = "python-dotenv", specifier = ">=1.0.1" },
+    { name = "pyyaml", specifier = ">=6.0.2" },
+    { name = "sqlalchemy", specifier = ">=2.0.30" },
+    { name = "structlog", specifier = ">=24.4.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pytest", specifier = ">=8.3.0" },
+    { name = "pytest-mock", specifier = ">=3.14.0" },
+]
+
+[[package]]
 name = "markdown"
 version = "3.10.2"
 source = { registry = "https://pypi.org/simple" }
@@ -990,53 +1037,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/42/f2/05f29bc3913aea15eb670be136045bf5c5bbf4b99ecb839da9b422bb2c85/requests-oauthlib-2.0.0.tar.gz", hash = "sha256:b3dffaebd884d8cd778494369603a9e7b58d29111bf6b41bdc2dcd87203af4e9", size = 55650 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/3b/5d/63d4ae3b9daea098d5d6f5da83984853c1bbacd5dc826764b249fe119d24/requests_oauthlib-2.0.0-py2.py3-none-any.whl", hash = "sha256:7dd8a5c40426b779b0868c404bdef9768deccf22749cde15852df527e6269b36", size = 24179 },
-]
-
-[[package]]
-name = "shine-email-assistant"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "anthropic" },
-    { name = "bleach" },
-    { name = "google-api-python-client" },
-    { name = "google-auth" },
-    { name = "google-auth-oauthlib" },
-    { name = "jinja2" },
-    { name = "markdown" },
-    { name = "psycopg", extra = ["binary"] },
-    { name = "python-dotenv" },
-    { name = "pyyaml" },
-    { name = "sqlalchemy" },
-    { name = "structlog" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "pytest" },
-    { name = "pytest-mock" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "anthropic", specifier = ">=0.40.0" },
-    { name = "bleach", specifier = ">=6.1.0" },
-    { name = "google-api-python-client", specifier = ">=2.140.0" },
-    { name = "google-auth", specifier = ">=2.34.0" },
-    { name = "google-auth-oauthlib", specifier = ">=1.2.0" },
-    { name = "jinja2", specifier = ">=3.1.4" },
-    { name = "markdown", specifier = ">=3.7" },
-    { name = "psycopg", extras = ["binary"], specifier = ">=3.2.0" },
-    { name = "python-dotenv", specifier = ">=1.0.1" },
-    { name = "pyyaml", specifier = ">=6.0.2" },
-    { name = "sqlalchemy", specifier = ">=2.0.30" },
-    { name = "structlog", specifier = ">=24.4.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "pytest", specifier = ">=8.3.0" },
-    { name = "pytest-mock", specifier = ">=3.14.0" },
 ]
 
 [[package]]

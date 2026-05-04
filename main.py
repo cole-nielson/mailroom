@@ -16,7 +16,7 @@ def main() -> int:
     args = parser.parse_args()
 
     tenants_root = Path(__file__).resolve().parent / "tenants"
-    tenant_name = os.getenv("TENANT_NAME", "shine")
+    tenant_name = os.getenv("TENANT_NAME", "example_roofer")
 
     if args.daily_sweep:
         from shine_email_assistant.db import init_db

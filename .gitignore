@@ -11,3 +11,7 @@ venv/
 data/
 *.db
 *.sqlite
+
+# Private/in-house tenants — never push to public repo.
+# Each developer can keep their own tenant folders here.
+tenants/shine/

@@ -38,7 +38,7 @@ def processed_threads(fixtures, gmail_client):
     """Run the pipeline once over all unprocessed threads. Returns mapping fixture_id → thread."""
     init_db()
     tenants_root = Path(__file__).resolve().parents[3] / "tenants"
-    tenant = os.getenv("TENANT_NAME", "shine")
+    tenant = os.getenv("TENANT_NAME", "example_roofer")
 
     pipeline = Pipeline(tenant_name=tenant, tenants_root=tenants_root)
     pipeline.tick()

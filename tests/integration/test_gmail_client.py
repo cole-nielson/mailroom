@@ -31,7 +31,7 @@ def test_can_get_thread_if_any_exist(gmail_client):
 
 def test_can_create_and_remove_processed_label(gmail_client):
     """Verifies the label-management plumbing — uses a throwaway label name."""
-    label = "shine-test-label-do-not-use"
+    label = "mailroom-test-label-do-not-use"
     label_id = gmail_client._ensure_label(label)
     assert label_id
     # second call is idempotent

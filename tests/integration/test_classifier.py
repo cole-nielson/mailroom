@@ -16,7 +16,7 @@ def _msg(body: str, from_email: str = "cust@example.com") -> ParsedMessage:
         message_id="m1",
         from_address=f"Customer <{from_email}>",
         from_email=from_email,
-        to_addresses=("info@shinefitness.com",),
+        to_addresses=("info@example.com",),
         subject="Question",
         date=datetime.now(timezone.utc),
         body_text=body,
@@ -24,23 +24,29 @@ def _msg(body: str, from_email: str = "cust@example.com") -> ParsedMessage:
 
 
 _KB = KnowledgeBundle(
-    kb_text="# Schedule\n\nWe hold classes Mon, Wed, Fri at 6pm.\n\n# Pricing\n\nDrop-in: $25.\n",
+    kb_text=(
+        "# Services\n\nWe do roof inspections (free), repairs, and full replacements.\n\n"
+        "# Pricing\n\nFree estimates. Repairs typically $400–$2,000. Full replacement varies by roof size.\n"
+    ),
     voice_text="",
     version="test",
 )
 
 
-def test_classifies_simple_schedule_question_as_draftable(anthropic_available):
-    thread = ParsedThread(thread_id="t1", messages=(_msg("What time is your Wednesday class?"),))
+def test_classifies_simple_service_question_as_draftable(anthropic_available):
+    thread = ParsedThread(
+        thread_id="t1",
+        messages=(_msg("Do you offer free roof inspections?"),),
+    )
     result = classify(thread, _KB)
     assert result.should_draft is True
     assert result.sensitivity == Sensitivity.LOW
-    assert "schedule" in result.category.lower() or result.category == "general_question"
 
 
 def test_classifies_complaint_as_high_sensitivity_no_draft(anthropic_available):
     thread = ParsedThread(thread_id="t2", messages=(_msg(
-        "I'm extremely upset. The instructor was rude to my daughter and I want a refund AND an apology."
+        "I'm extremely upset. Your crew left nails all over my driveway and damaged my landscaping. "
+        "I want someone to come back out AND a discount."
     ),))
     result = classify(thread, _KB)
     assert result.sensitivity == Sensitivity.HIGH

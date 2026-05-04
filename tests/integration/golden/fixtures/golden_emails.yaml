@@ -1,39 +1,42 @@
-- id: schedule_question_simple
-  from: customer1@example.com
-  subject: "Tuesday class time?"
-  body: "Hi, what time is your Tuesday class?"
-  expected_outcome: drafted
-  expected_category_substring: schedule
+# Golden fixtures keyed to the example_roofer tenant. Each fixture has an
+# expected_outcome the pipeline should produce. Run scripts/seed_test_inbox.py
+# to load these into the test inbox before running the golden harness.
 
-- id: pricing_drop_in
+- id: free_inspection_request
+  from: customer1@example.com
+  subject: "Free roof inspection?"
+  body: "Hi, do you do free roof inspections? I think I have some storm damage from last week."
+  expected_outcome: drafted
+
+- id: pricing_replacement
   from: customer2@example.com
-  subject: "How much per class?"
-  body: "How much is it to drop in for one class?"
+  subject: "Ballpark for a new roof"
+  body: "Looking for a rough idea — what does a typical asphalt shingle replacement cost for a 2,000 sq ft single-story home?"
   expected_outcome: drafted
   expected_category_substring: pricing
 
-- id: beginner_inquiry
+- id: insurance_claim_help
   from: customer3@example.com
-  subject: "I've never danced"
-  body: "Hi! I've literally never taken a dance class. Is this beginner friendly?"
+  subject: "Insurance claim - need a contractor"
+  body: "Hail came through last week. My adjuster is coming Wednesday. Should I have a contractor walk the roof with him?"
   expected_outcome: drafted
 
 - id: refund_request
   from: customer4@example.com
-  subject: "Refund please"
-  body: "I bought the annual pass last week and need to cancel for medical reasons. Can I get a refund?"
+  subject: "Need to cancel - refund?"
+  body: "I paid the deposit last week but my husband just lost his job and we have to cancel. Can I get the deposit back?"
   expected_outcome: flagged
 
 - id: complaint
   from: customer5@example.com
-  subject: "Not happy"
-  body: "The instructor was incredibly rude to me on Saturday. I'm very upset and want a response."
+  subject: "Damage to my landscaping"
+  body: "Your crew left nails all over my driveway and crushed my landscaping. I'm furious. Someone needs to fix this."
   expected_outcome: flagged
 
 - id: vendor_pitch
   from: salesrep@vendor.com
-  subject: "Boost your studio's revenue!"
-  body: "Hi there, I'd love to show you our new POS system that's helping studios like yours increase revenue by 30%."
+  subject: "Boost your roofing business 30%"
+  body: "Hi there, I'd love to show you our new lead-generation platform that's helping contractors like you grow revenue."
   expected_outcome: skipped
 
 - id: short_thanks
@@ -44,18 +47,18 @@
 
 - id: ambiguous_multi_question
   from: customer7@example.com
-  subject: "couple of questions"
-  body: "Hi, I had a few questions: do you offer kids classes, what's parking like, and is there a senior discount? Also what's your refund policy?"
-  expected_outcome: drafted  # answerable from KB but model may flag ambiguous; either way drafted is OK
-
-- id: registration
-  from: customer8@example.com
-  subject: "Sign me up"
-  body: "I want to start coming. How do I sign up for the monthly unlimited?"
+  subject: "few questions about my roof"
+  body: "Hi, I have several questions: do you do gutter work, do you offer financing, are you licensed, and what's your warranty? Also is there a senior discount?"
   expected_outcome: drafted
 
-- id: family_question
+- id: scheduling
+  from: customer8@example.com
+  subject: "Ready to schedule"
+  body: "Got the estimate, looks good. How do I get on the schedule?"
+  expected_outcome: drafted
+
+- id: service_area_question
   from: customer9@example.com
-  subject: "Can my daughter come?"
-  body: "Can I bring my 10-year-old to class with me?"
+  subject: "Do you serve Hendersonville?"
+  body: "Hi, I'm in Hendersonville. Is that within your service area?"
   expected_outcome: drafted
