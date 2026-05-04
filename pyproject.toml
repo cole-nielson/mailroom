@@ -1,6 +1,7 @@
 [project]
-name = "shine-email-assistant"
+name = "mailroom"
 version = "0.1.0"
+description = "Multi-tenant Gmail assistant: classifies inbound customer emails and drafts on-brand replies grounded in a per-tenant knowledge base."
 requires-python = ">=3.12"
 dependencies = [
     "anthropic>=0.40.0",
