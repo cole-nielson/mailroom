@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from shine_email_assistant.renderer.render import RenderedEmail, render
+from mailroom.renderer.render import RenderedEmail, render
 
 
 def _seed_tenant(root: Path) -> Path:

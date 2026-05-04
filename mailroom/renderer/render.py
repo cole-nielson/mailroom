@@ -7,7 +7,7 @@ import bleach
 import markdown as md_lib
 from jinja2 import Environment, StrictUndefined
 
-from shine_email_assistant.config import load_tenant_config
+from mailroom.config import load_tenant_config
 
 # Tags whose entire content (not just the tag) must be removed.
 _STRIP_CONTENT_RE = re.compile(

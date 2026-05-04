@@ -16,7 +16,7 @@ import yaml
 from dotenv import load_dotenv
 from googleapiclient.discovery import build
 
-from shine_email_assistant.gmail_client.auth import credentials_from_env
+from mailroom.gmail_client.auth import credentials_from_env
 
 load_dotenv()
 

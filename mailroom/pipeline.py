@@ -14,21 +14,21 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from threading import Lock
 
-from shine_email_assistant.alerts import send_alert
-from shine_email_assistant.classifier import Sensitivity, classify
-from shine_email_assistant.db import DraftRecord, ErrorRecord, SkipRecord, init_db, session
-from shine_email_assistant.drafter import generate
-from shine_email_assistant.filters import should_skip
-from shine_email_assistant.gmail_client import (
+from mailroom.alerts import send_alert
+from mailroom.classifier import Sensitivity, classify
+from mailroom.db import DraftRecord, ErrorRecord, SkipRecord, init_db, session
+from mailroom.drafter import generate
+from mailroom.filters import should_skip
+from mailroom.gmail_client import (
     ERROR_LABEL,
     FLAG_FOR_HUMAN_LABEL,
     PROCESSED_LABEL,
     SKIPPED_LABEL,
     GmailClient,
 )
-from shine_email_assistant.knowledge import KnowledgeBundle, KnowledgeLoader
-from shine_email_assistant.log import configure_logging, get_logger
-from shine_email_assistant.renderer import render
+from mailroom.knowledge import KnowledgeBundle, KnowledgeLoader
+from mailroom.log import configure_logging, get_logger
+from mailroom.renderer import render
 
 log = get_logger(__name__)
 

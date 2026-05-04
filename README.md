@@ -234,7 +234,7 @@ Watch the logs:
 ## Project structure
 
 ```
-shine_email_assistant/        # core package (legacy name; the system is tenant-agnostic)
+mailroom/                     # core package (tenant-agnostic)
 ├── pipeline.py               # orchestrator + polling loop
 ├── config.py                 # tenant config (yaml) loader
 ├── log.py                    # structlog setup

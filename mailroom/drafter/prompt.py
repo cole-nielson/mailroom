@@ -1,7 +1,7 @@
 """Drafter prompt. Body-only output — no signature, no HTML, no salutation boilerplate."""
-from shine_email_assistant.classifier.types import Classification
-from shine_email_assistant.gmail_client.thread import ParsedThread
-from shine_email_assistant.knowledge.loader import KnowledgeBundle
+from mailroom.classifier.types import Classification
+from mailroom.gmail_client.thread import ParsedThread
+from mailroom.knowledge.loader import KnowledgeBundle
 
 
 SYSTEM_PROMPT = """You are drafting reply emails for a small business owner to review.

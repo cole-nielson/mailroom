@@ -19,15 +19,15 @@ def main() -> int:
     tenant_name = os.getenv("TENANT_NAME", "example_roofer")
 
     if args.daily_sweep:
-        from shine_email_assistant.db import init_db
-        from shine_email_assistant.feedback import audit_recent_drafts
-        from shine_email_assistant.log import configure_logging
+        from mailroom.db import init_db
+        from mailroom.feedback import audit_recent_drafts
+        from mailroom.log import configure_logging
         configure_logging()
         init_db()
         audit_recent_drafts()
         return 0
 
-    from shine_email_assistant.pipeline import run_forever
+    from mailroom.pipeline import run_forever
     poll = int(os.getenv("POLL_INTERVAL_SECONDS", "60"))
     run_forever(tenant_name=tenant_name, tenants_root=tenants_root, poll_interval_seconds=poll)
     return 0

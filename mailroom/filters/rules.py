@@ -2,7 +2,7 @@
 import re
 from dataclasses import dataclass
 
-from shine_email_assistant.gmail_client.thread import ParsedThread
+from mailroom.gmail_client.thread import ParsedThread
 
 _AUTOMATION_PATTERNS = (
     re.compile(r"^no-?reply@", re.IGNORECASE),

@@ -3,7 +3,7 @@ import os
 
 import pytest
 
-from shine_email_assistant.gmail_client import GmailClient
+from mailroom.gmail_client import GmailClient
 
 
 def _has_gmail_creds() -> bool:

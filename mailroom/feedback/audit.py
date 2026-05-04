@@ -1,10 +1,10 @@
 """Daily sweep: compare each recent draft to the actually-sent message in the thread."""
 from datetime import datetime, timedelta, timezone
 
-from shine_email_assistant.db import DraftRecord, session
-from shine_email_assistant.feedback.diff import categorize_outcome, edit_distance_ratio
-from shine_email_assistant.gmail_client import GmailClient
-from shine_email_assistant.log import get_logger
+from mailroom.db import DraftRecord, session
+from mailroom.feedback.diff import categorize_outcome, edit_distance_ratio
+from mailroom.gmail_client import GmailClient
+from mailroom.log import get_logger
 
 log = get_logger(__name__)
 

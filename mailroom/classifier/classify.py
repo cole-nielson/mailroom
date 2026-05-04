@@ -5,11 +5,11 @@ from functools import lru_cache
 
 from anthropic import Anthropic
 
-from shine_email_assistant.classifier.prompt import SYSTEM_PROMPT, build_user_prompt
-from shine_email_assistant.classifier.types import Classification, Sensitivity
-from shine_email_assistant.gmail_client.thread import ParsedThread
-from shine_email_assistant.knowledge.loader import KnowledgeBundle
-from shine_email_assistant.log import get_logger
+from mailroom.classifier.prompt import SYSTEM_PROMPT, build_user_prompt
+from mailroom.classifier.types import Classification, Sensitivity
+from mailroom.gmail_client.thread import ParsedThread
+from mailroom.knowledge.loader import KnowledgeBundle
+from mailroom.log import get_logger
 
 log = get_logger(__name__)
 

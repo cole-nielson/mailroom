@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 
-from shine_email_assistant.filters.rules import SkipDecision, should_skip
-from shine_email_assistant.gmail_client.thread import ParsedMessage, ParsedThread
+from mailroom.filters.rules import SkipDecision, should_skip
+from mailroom.gmail_client.thread import ParsedMessage, ParsedThread
 
 
 def _msg(**overrides) -> ParsedMessage:
@@ -71,7 +71,7 @@ def test_skips_when_sender_is_plus_bounce_address():
 
 def test_latest_message_raises_on_empty_thread():
     import pytest
-    from shine_email_assistant.gmail_client.thread import ParsedThread
+    from mailroom.gmail_client.thread import ParsedThread
     empty = ParsedThread(thread_id="t-empty", messages=())
     with pytest.raises(ValueError, match="t-empty"):
         _ = empty.latest_message

@@ -1,4 +1,4 @@
-from shine_email_assistant.feedback.diff import (
+from mailroom.feedback.diff import (
     Outcome,
     categorize_outcome,
     edit_distance_ratio,

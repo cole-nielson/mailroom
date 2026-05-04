@@ -1,6 +1,6 @@
 """Build the classifier system + user prompts."""
-from shine_email_assistant.gmail_client.thread import ParsedThread
-from shine_email_assistant.knowledge.loader import KnowledgeBundle
+from mailroom.gmail_client.thread import ParsedThread
+from mailroom.knowledge.loader import KnowledgeBundle
 
 
 CATEGORIES = [

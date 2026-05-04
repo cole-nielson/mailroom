@@ -3,9 +3,9 @@ from datetime import datetime, timezone
 
 import pytest
 
-from shine_email_assistant.classifier import Sensitivity, classify
-from shine_email_assistant.gmail_client.thread import ParsedMessage, ParsedThread
-from shine_email_assistant.knowledge.loader import KnowledgeBundle
+from mailroom.classifier import Sensitivity, classify
+from mailroom.gmail_client.thread import ParsedMessage, ParsedThread
+from mailroom.knowledge.loader import KnowledgeBundle
 
 
 pytestmark = pytest.mark.integration

@@ -14,14 +14,14 @@ from pathlib import Path
 import pytest
 import yaml
 
-from shine_email_assistant.db import DraftRecord, init_db, session
-from shine_email_assistant.gmail_client import (
+from mailroom.db import DraftRecord, init_db, session
+from mailroom.gmail_client import (
     FLAG_FOR_HUMAN_LABEL,
     PROCESSED_LABEL,
     SKIPPED_LABEL,
     GmailClient,
 )
-from shine_email_assistant.pipeline import Pipeline
+from mailroom.pipeline import Pipeline
 
 
 pytestmark = pytest.mark.integration

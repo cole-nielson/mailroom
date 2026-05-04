@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from shine_email_assistant.config import TenantConfig, load_tenant_config
+from mailroom.config import TenantConfig, load_tenant_config
 
 
 def test_load_tenant_config_reads_yaml(tmp_path: Path):

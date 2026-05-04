@@ -1,7 +1,7 @@
 import time
 from pathlib import Path
 
-from shine_email_assistant.knowledge.loader import KnowledgeBundle, KnowledgeLoader
+from mailroom.knowledge.loader import KnowledgeBundle, KnowledgeLoader
 
 
 def _seed_tenant(root: Path, name: str) -> Path:

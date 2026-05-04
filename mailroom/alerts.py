@@ -9,7 +9,7 @@ import os
 import smtplib
 from email.message import EmailMessage
 
-from shine_email_assistant.log import get_logger
+from mailroom.log import get_logger
 
 log = get_logger(__name__)
 

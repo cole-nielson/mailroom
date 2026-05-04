@@ -10,9 +10,9 @@ from typing import Iterable
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-from shine_email_assistant.gmail_client.auth import credentials_from_env
-from shine_email_assistant.gmail_client.thread import ParsedMessage, ParsedThread
-from shine_email_assistant.log import get_logger
+from mailroom.gmail_client.auth import credentials_from_env
+from mailroom.gmail_client.thread import ParsedMessage, ParsedThread
+from mailroom.log import get_logger
 
 log = get_logger(__name__)
 
